@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "280690283709",
+    "project_id": "hw2-forum",
+    "storage_bucket": "hw2-forum.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:280690283709:android:66941119163ac3ba5813d4",
+        "android_client_info": {
+          "package_name": "com.example.hw2"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDzpLzEZQKLhTa4sptynCGi2Gl-VCAVfvk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
