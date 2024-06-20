@@ -62,9 +62,8 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageViewHolder> {
     @NonNull
     @Override
     public MessageViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.message,parent,false);
-        MessageViewHolder viewHolder = new MessageViewHolder(view);
-        return viewHolder;
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.message, parent, false);
+        return new MessageViewHolder(view);
     }
 
     @Override
@@ -76,14 +75,14 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageViewHolder> {
         holder.Card.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(v.getContext(),MessageActivity.class);
-                //intent.putExtra("message",message);
+                Intent intent = new Intent(v.getContext(), MessageActivity.class);
+                intent.putExtra("message", message); // Pass the message object
                 ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(
                         (Activity) v.getContext(),
                         holder.Card,
                         "cardTransition"
                 );
-                v.getContext().startActivity(intent,options.toBundle());
+                v.getContext().startActivity(intent, options.toBundle());
             }
         });
     }
@@ -94,7 +93,8 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageViewHolder> {
     }
 
     public void DeleteMessage(int pos) {
-        Message m = Messages.get(-1);
+        Message m = Messages.get(pos);
         db.collection("Messages").document(m.ID).delete();
     }
 }
+

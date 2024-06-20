@@ -1,14 +1,11 @@
 package com.example.hw2;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 import com.bumptech.glide.Glide;
 
@@ -19,17 +16,21 @@ public class MessageActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_message);
 
-        Bundle bundle = getIntent().getExtras();
-        Message message = (Message) bundle.getSerializable("message");
+        Intent intent = getIntent();
+        Message message = (Message) intent.getSerializableExtra("message");
 
+        if (message != null) {
+            TextView Name = findViewById(R.id.name);
+            TextView Text = findViewById(R.id.text);
+            ImageView Avatar = findViewById(R.id.avatar);
 
-        TextView Name = findViewById(R.id.name);
-        TextView Text = findViewById(R.id.text);
-        ImageView Avatar = findViewById(R.id.avatar);
-
-        //Avatar.setImageURI(Uri.parse(message.Avatar));
-        Glide.with(this).load(message.Avatar).into(Avatar);
-        Name.setText(message.Name);
-        Text.setText(message.Text);
+            Glide.with(this).load(message.Avatar).into(Avatar);
+            Name.setText(message.Name);
+            Text.setText(message.Text);
+        } else {
+            // Handle the case where message is null
+            // For example, show an error message or finish the activity
+            finish();
+        }
     }
 }
